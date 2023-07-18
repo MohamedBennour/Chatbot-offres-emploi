@@ -1,0 +1,56 @@
+version: "3.1"
+  
+- rule: Salutation
+  steps:
+  - intent: salutation
+  - action: utter_salutation
+
+- rule: Recherche offres d'emploi
+  steps:
+  - intent: recherche_offres_emploi
+  - action: utter_demande_localisation
+
+- rule: Préciser localisation
+  steps:
+  - intent: precisier_localisation
+  - action: utter_demande_type_contrat
+  - slot_was_set:
+    - requested_slot: location
+
+- rule: Fournir type contrat
+  steps:
+  - intent: fournir_type_contrat
+  - action: utter_demande_domaine_emploi
+  - slot_was_set:
+    - requested_slot: type_contrat
+
+- rule: Fournir domaine emploi
+  steps:
+  - intent: fournir_domaine_emploi
+  - action: utter_demande_fourchette_salaire
+  - slot_was_set:
+    - requested_slot: domaine_emploi
+
+- rule: Fournir fourchette salaire
+  steps:
+  - intent: fournir_fourchette_salaire
+  - action: action_listen
+  - slot_was_set:
+    - requested_slot: salaire_minimum
+    - requested_slot: salaire_maximum
+
+- rule: Continuer recherche
+  steps:
+  - intent: continuer_recherche
+  - action: utter_afficher_offres
+
+- rule: Changer critères recherche
+  steps:
+  - intent: ressaisir_informations
+  - action: utter_informations_incorrectes
+  - action: utter_demande_localisation
+
+- rule: Terminer recherche
+  steps:
+  - intent: terminer_recherche
+  - action: utter_au_revoir

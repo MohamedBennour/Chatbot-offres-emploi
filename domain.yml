@@ -1,0 +1,145 @@
+version: '3.1'
+intents:
+- continuer_recherche
+- fournir_domaine_emploi
+- fournir_fourchette_salaire
+- fournir_type_contrat
+- nlu_fallback
+- precisier_localisation
+- recherche_offres_emploi
+- ressaisir_informations
+- salutation
+- chitchat
+- terminer_recherche
+entities:
+- domaine_emploi
+- location
+- salaire_maximum
+- salaire_minimum
+- type_contrat
+slots:
+  slot_location:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: location
+  slot_type_contrat:
+    type: categorical
+    values:
+    - CDI
+    - CDD
+    - Stage
+    mappings:
+    - type: from_entity
+      entity: type_contrat
+  slot_domaine_emploi:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: domaine_emploi
+  slot_salaire_minimum:
+    type: float
+    mappings:
+    - type: from_entity
+      entity: salaire_minimum
+  slot_salaire_maximum:
+    type: float
+    mappings:
+    - type: from_entity
+      entity: salaire_maximum
+responses:
+  utter_salutation:
+  - text: Bonjour, comment puis-je vous aider ?
+  utter_chitchat:
+  - text: "Je suis un chatbot spécialisé dans la recherche d'emploi. Mon objectif est de vous aider à trouver des offres d'emploi pertinentes. Comment puis-je vous aider dans votre recherche d'emploi ?"
+  utter_demande_localisation:
+  - text: Dans quelle localisation souhaitez-vous chercher des offres d'emploi ?
+    buttons:
+    - title: Ariana
+      payload: /precisier_localisation{{"location":"Ariana"}}
+    - title: Ben Arous
+      payload: /precisier_localisation{{"location":"Ben Arous"}}
+    - title: Bizerte
+      payload: /precisier_localisation{{"location":"Bizerte"}}
+    - title: Manouba
+      payload: /precisier_localisation{{"location":"Manouba"}}
+    - title: Monastir
+      payload: /precisier_localisation{{"location":"Monastir"}}
+    - title: Nabeul
+      payload: /precisier_localisation{{"location":"Nabeul"}}
+    - title: Sfax
+      payload: /precisier_localisation{{"location":"Sfax"}}
+    - title: Sousse
+      payload: /precisier_localisation{{"location":"Sousse"}}
+    - title: Tunis
+      payload: /precisier_localisation{{"location":"Tunis"}}
+  utter_demande_type_contrat:
+  - text: Quel type de contrat recherchez-vous ?
+    buttons:
+    - title: CDI
+      payload: /fournir_type_contrat{{"type_contrat":"CDI"}}
+    - title: CDD
+      payload: /fournir_type_contrat{{"type_contrat":"CDD"}}
+    - title: Stage
+      payload: /fournir_type_contrat{{"type_contrat":"Stage"}}
+  utter_demande_domaine_emploi:
+  - text: Dans quel domaine recherchez-vous un emploi ?
+    buttons:
+    - title: Informatique
+      payload: '/fournir_domaine_emploi{{"domaine_emploi": "Informatique"}}'
+    - title: Marketing
+      payload: '/fournir_domaine_emploi{{"domaine_emploi": "Marketing"}}'
+    - title: Vente
+      payload: '/fournir_domaine_emploi{{"domaine_emploi": "Vente"}}'
+    - title: Finance
+      payload: '/fournir_domaine_emploi{{"domaine_emploi": "Finance"}}'
+    - title: Ressources humaines
+      payload: '/fournir_domaine_emploi{{"domaine_emploi": "Ressources humaines"}}'
+    - title: Design graphique
+      payload: '/fournir_domaine_emploi{{"domaine_emploi": "Design graphique"}}'
+  utter_demande_fourchette_salaire:
+  - text: Quelle est la fourchette de salaire souhaitée ?
+    buttons:
+    - title: Moins de 1000 DT
+      payload: '/fournir_fourchette_salaire{{"salaire_minimum": "0", "salaire_maximum": "1000"}}'
+    - title: 1000 - 2000 DT
+      payload: '/fournir_fourchette_salaire{{"salaire_minimum": "1000", "salaire_maximum": "2000"}}'
+    - title: 2000 - 3000 DT
+      payload: '/fournir_fourchette_salaire{{"salaire_minimum": "2000", "salaire_maximum": "3000"}}'
+    - title: Plus de 3000 DT
+      payload: '/fournir_fourchette_salaire{{"salaire_minimum": "3000", "salaire_maximum": "999999999"}}'
+  utter_informations_incorrectes:
+  - text: Oops, les informations que vous avez fournies sont incorrectes. Veuillez ressaisir les informations nécessaires.
+  utter_afficher_offres:
+  - text: "Voici quelques offres d'emploi correspondant à vos critères : ..."
+  utter_details_offre:
+  - text: "Voici les détails de l'offre sélectionnée : ..."
+  utter_postuler_offre:
+  - text: Pour postuler à cette offre, veuillez suivre les instructions de candidature spécifiées dans l'annonce.
+  utter_continuer_recherche:
+  - text: Voulez-vous continuer à chercher d'autres offres ou souhaitez-vous terminer votre recherche d'emploi ?
+  utter_au_revoir:
+  - text: Merci d'avoir utilisé notre chatbot de recherche d'emploi. N'hésitez pas à revenir si vous avez d'autres besoins. Au revoir !
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+actions:
+- utter_au_revoir
+- utter_salutation
+- utter_demande_type_contrat
+- utter_demande_localisation
+- utter_demande_domaine_emploi
+- utter_afficher_offres
+- utter_demande_fourchette_salaire
+forms:
+  emploi_form:
+    ignored_intents:
+      - salutation
+      - terminer_recherche
+    required_slots:
+      - slot_location
+      - slot_type_contrat
+      - slot_domaine_emploi
+      - slot_salaire_minimum
+      - slot_salaire_maximum
+
