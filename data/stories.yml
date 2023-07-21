@@ -36,8 +36,7 @@ stories:
           - salaire_minimum: "1000"
           - salaire_maximum: "4000"
       - action: emploi_form
-      - action: utter_afficher_offres
-      - action: action_listen
+      - active_loop: emploi_form
 
   - story: User wants to see more job offers
     steps:
@@ -48,9 +47,12 @@ stories:
     steps:
       - intent: ressaisir_informations
       - action: utter_informations_incorrectes
-      - action: utter_demande_localisation
+      - action: emploi_form
+      - active_loop: emploi_form
 
   - story: User ends the conversation
     steps:
       - intent: terminer_recherche
       - action: utter_au_revoir
+      - action: emploi_form
+      - active_loop: null

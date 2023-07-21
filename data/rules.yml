@@ -1,5 +1,6 @@
 version: "3.1"
-  
+
+rules:
 - rule: Salutation
   steps:
   - intent: salutation
@@ -11,33 +12,32 @@ version: "3.1"
   - action: utter_demande_localisation
 
 - rule: Préciser localisation
+  condition:
+  - active_loop: emploi_form
   steps:
-  - intent: precisier_localisation
-  - action: utter_demande_type_contrat
-  - slot_was_set:
-    - requested_slot: location
+  - action: emploi_form
+  - active_loop: emploi_form
 
 - rule: Fournir type contrat
+  condition:
+  - active_loop: emploi_form
   steps:
-  - intent: fournir_type_contrat
-  - action: utter_demande_domaine_emploi
-  - slot_was_set:
-    - requested_slot: type_contrat
+  - action: emploi_form
+  - active_loop: emploi_form
 
 - rule: Fournir domaine emploi
+  condition:
+  - active_loop: emploi_form
   steps:
-  - intent: fournir_domaine_emploi
-  - action: utter_demande_fourchette_salaire
-  - slot_was_set:
-    - requested_slot: domaine_emploi
+  - action: emploi_form
+  - active_loop: emploi_form
 
 - rule: Fournir fourchette salaire
+  condition:
+  - active_loop: emploi_form
   steps:
-  - intent: fournir_fourchette_salaire
-  - action: action_listen
-  - slot_was_set:
-    - requested_slot: salaire_minimum
-    - requested_slot: salaire_maximum
+  - action: emploi_form
+  - active_loop: emploi_form
 
 - rule: Continuer recherche
   steps:
@@ -48,9 +48,12 @@ version: "3.1"
   steps:
   - intent: ressaisir_informations
   - action: utter_informations_incorrectes
-  - action: utter_demande_localisation
+  - action: emploi_form
+  - active_loop: emploi_form
 
 - rule: Terminer recherche
   steps:
   - intent: terminer_recherche
   - action: utter_au_revoir
+  - action: emploi_form
+  - active_loop: null

@@ -1,5 +1,6 @@
 version: '3.1'
 intents:
+- chitchat
 - continuer_recherche
 - fournir_domaine_emploi
 - fournir_fourchette_salaire
@@ -9,14 +10,13 @@ intents:
 - recherche_offres_emploi
 - ressaisir_informations
 - salutation
-- chitchat
 - terminer_recherche
 entities:
+- salaire_minimum
 - domaine_emploi
+- type_contrat
 - location
 - salaire_maximum
-- salaire_minimum
-- type_contrat
 slots:
   slot_location:
     type: text
@@ -51,7 +51,7 @@ responses:
   utter_salutation:
   - text: Bonjour, comment puis-je vous aider ?
   utter_chitchat:
-  - text: "Je suis un chatbot spécialisé dans la recherche d'emploi. Mon objectif est de vous aider à trouver des offres d'emploi pertinentes. Comment puis-je vous aider dans votre recherche d'emploi ?"
+  - text: Je suis un chatbot spécialisé dans la recherche d'emploi. Mon objectif est de vous aider à trouver des offres d'emploi pertinentes. Comment puis-je vous aider dans votre recherche d'emploi ?
   utter_demande_localisation:
   - text: Dans quelle localisation souhaitez-vous chercher des offres d'emploi ?
     buttons:
@@ -124,22 +124,59 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 actions:
+- utter_demande_type_contrat
+- utter_demande_domaine_emploi
+- utter_demande_localisation
+- utter_demande_fourchette_salaire
 - utter_au_revoir
 - utter_salutation
-- utter_demande_type_contrat
-- utter_demande_localisation
-- utter_demande_domaine_emploi
 - utter_afficher_offres
-- utter_demande_fourchette_salaire
+- emploi_form
 forms:
   emploi_form:
     ignored_intents:
-      - salutation
-      - terminer_recherche
+    - salutation
+    - terminer_recherche
     required_slots:
-      - slot_location
-      - slot_type_contrat
-      - slot_domaine_emploi
-      - slot_salaire_minimum
-      - slot_salaire_maximum
+    - slot_location
+    - slot_type_contrat
+    - slot_domaine_emploi
+    - slot_salaire_minimum
+    - slot_salaire_maximum
 
+synonyms:
+  - synonym: "CDI"
+    examples: |
+      - CDI
+      - Contrat à durée indéterminée
+  - synonym: "CDD"
+    examples: |
+      - CDD
+      - Contrat à durée déterminée
+
+lookup: location
+examples: |
+    - Tunis
+    - Ariana
+    - Ben Arous
+    - Manouba
+    - Nabeul
+    - Zaghouan
+    - Bizerte
+    - Béja
+    - Jendouba
+    - Le Kef
+    - Siliana
+    - Kairouan
+    - Kasserine
+    - Sidi Bouzid
+    - Sousse
+    - Monastir
+    - Mahdia
+    - Sfax
+    - Gafsa
+    - Tozeur
+    - Kebili
+    - Gabès
+    - Medenine
+    - Tataouine

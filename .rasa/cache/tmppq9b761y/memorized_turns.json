@@ -1,0 +1,25 @@
+{
+  "lookup": {
+    "eJyLrq6NBQAEOAGx": "action_listen",
+    "eJwtysEJgDAMQNFVMoATdBWREiRCwKYliV5Kdjeit//hrTMWmEPprrg7dykwv6iCjQr8c7I5SdrLSNOw5HoBJTNkY60sR9eGr7aI7QH9lCK7": "utter_informations_incorrectes",
+    "eJyNjUEKgDAMBL+SB/iCfkWklBIhYFNJUi+lfzeiF09624HZ3bmPCfoueMSUjSoH6HeInAoGeGAjNWR3m6K4Q+xoAQRVEylJJF6rlHTZOj5Gmxm+Gw65imA21P8vywnL1UsF": "utter_demande_localisation",
+    "eJyVj8ENwzAIRVfxAJ0gq1SVhRwqIdlgAcnFyu7FTS89pb3xpfcfcB/HLY2uuGcoTsJLGueQGRou6RMqmSMHuxlqMMQRfUmKZkBGmomfog0mbceFdHPH70aEIqpYHO2vLdO7Y64iPQqnHluvQnmSgVzesWIDXqejQPz5lv9+w+MFgVB+LA==": "action_listen",
+    "eJxdjtEKwzAIRX/FDyije82vhBKkOCYkZiRmDEL+fZZ2jPbFq3A4Xt/HBP1V6B1wVc7ioO9LEEzk4DgiVyUxtsas1aAtQ8WIXCgk/HBqyYG/3+YJbCw7+SdYroTJWqViLhJlZTKtvxjNchaYl8WaqINHbkW4hC3XJ6nS79sYyxdrK0+n": "emploi_form",
+    "eJzVj8EKwyAMhl8lD1DGdvVVShEpGQtoFI1lIH33RdwY7WH3XYyBL1/yz22foKWMm3WrUGQDbXwsu4AG3o2nIsjKFh+lKNSrLc47ymiDe1KowcB8u1wn0GcZ5JcgPhMqqwWzupCFhFC188molqNAvcR6iRi4x5qZsu11faAIfrbtPVM/fEPrY0y6YoTBkHwknchBkR+pj+B/ZF5eBWGpkQ==": "action_listen",
+    "eJxdzEEKhDAMBdCr5AAy6LZXKaUUjRBoE2mjm9K7T2Rmo6v/Pzy+72OCflS8YlqVhB30X4mcCjr4j0xNkc22LNoM3Rk3KYkYI5YjCznwy2cOhs6G1QyykhIa908ZJiC2P3Wwy1mZ6utqjPAFk6g6cA==": "utter_demande_fourchette_salaire",
+    "eJy9jjEKwzAMRa/iA4TSrr5KMEYkv1Rgy8GWu5jcvQrp0i7dOkn6PD3+PPbJja3iGWlRLuLdOJcolOHd+0jcFGJsS0WbQceMa8nEgoi8pcLezbfLNRjUG6oxEGVlGD5/kmFyLOZT7+6lV+H6pdp/tOqqsB9kkhXxcCwPWBYbJeKKPxYNL4c4evw=": "action_listen",
+    "eJw1jUsKwDAIBa/iAUppt7lKCCEEF0JqSrTdhNy99rdSeeM838cEfW94xpSVKjvo7xI5bejgOwqJIhsrpaoYdM9Yak7vk1/nJVh8CDZLkZWU0ED/M2ECYnOoA6vLJITtEZj6AcYIF+BtNZ8=": "utter_demande_type_contrat",
+    "eJy1jkEKwzAMBL/iB4TSXv0VY4RxdBA4crA3hWLy96pJeu6pJ0ns7GrD2Cc31sZPShlS1btxLqRpYe+uo0gHq7G9VHSDPpNKzek0hcftHk3eOjdTWSEQNjB8mTg5UcuAd/YuSxduR4BFH8D+o8kGmGPmJenMhNfKlKuiJfy5VnwDeBdu/Q==": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohOT+vJDOvNLUovig1OSO1CIhra2MBlfMhTQ==": "utter_afficher_offres",
+    "eJyNjEEKgDAMBL/SB/iCfkUklJJgQFNJUy+lfzeidz0s7MLszH1MoR+KJ6RsXCSG/hSQtGMM79i4GoqzraI6w+LTYshFjKWhgmJeUT3jw9jMHE9EfB+gECnWn+blAmVNRCw=": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEqhJLUoNzMvtSi+KDU5I7UIiGtrYwF0bCDc": "utter_au_revoir",
+    "eJyNjEEKgDAMBL/SB/iCfkUklLJgwEZJ015K/25A73pY2IGdXcdcwrgUnVI2PiWG8RSSVBDDCwdXg/i2VahvWBwtBoMWFigp8g71zI/DZu5Qam70k/Xf5XYDS5pA+g==": "emploi_form",
+    "eJytjEEKgDAMBL/SB/iCfkUkFFkxYNMSUy/FvxvQux48LOzC7Iz9HEKvioPSbFwkhn4XkpQRwzM23g3ibNuhzrD4tBgMmlmgpJhXqOd8ETbzD6Xmj6Ow/qFErlthWormb7rpAgGFX1I=": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEqhODGntCQRpKS2NhYAehsdsg==": "utter_salutation",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEqhODGntCQRpKSWgEGlJSWpRfFI6vGaFQsAptA7Hg==": "action_listen",
+    "eJyljk0KgCAUhK/iATqBV4l4iIwk+Mfz2Ua8e0Yt2rVoMTADHx+z9rGoXhgHGSs+J636XSiZCK2eEXwVpMm2Cp6MT3OKVtWEJuZCxoeoiYDpxf9wfZxi2B08Q9k5RiXEErIfYzsBColcTQ==": "utter_demande_localisation",
+    "eJyljkEKwzAMBL/iB/QF/kopQjgbarDlIMu9mPy9Ku2hl5BCDwItDLtznfslzE3xIE6Wm8Qw3w8JV8TwCSV3gzg7OtSZLB4ths5lGL+Q/aRomEHpi/+j60RKke5QP2rrquiEupWWfzNcUFkWUGmJfeDA9XDi9gQmtYLS": "action_listen",
+    "eJxVzEsKhTAMBdCtZAFFdNqtlFKK5EFAU0mj8CjduxEd6CQfuOeG1h20TfBIeVYq7KHdR+K8oofnWagqsmXrUrRa6NpJ/xumubBKVg9hGkYH43tEE3tFMYCspIRmw5tFB8RWbf5XdmGST2vv8QTRkzsM": "utter_demande_domaine_emploi",
+    "eJzFjkEKQyEMRK/iAaT8br2KSJBvCgGNorFQ5N+9Ke3id9VlN5MJzBvGr8Oa1TreIe5ClZ1ZbwMcCzrzeTINQdbsyFWGhl4X5NEQ9srSozjjr5fNmu0sQYk5sCuALCSEyvozFqwh1mrlb3V2pv7VevyYN0WwQ8ISOSGkWiIxApaWK/1jbXgCoUB6fQ==": "action_listen"
+  }
+}

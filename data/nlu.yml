@@ -3,14 +3,13 @@ nlu:
 - intent: salutation
   examples: |
     - Bonjour
-    - Salut
     - Bonsoir
+    - Salut
     - Bonjour, comment ça va ?
     - Salut, comment ça va ?
     - Coucou
     - Hi
     - Hey
-    - salut
 - intent: chitchat
   examples: |
     - Comment ça va ?
@@ -18,7 +17,6 @@ nlu:
     - As-tu des hobbies ?
     - Est-ce que vous êtes un bot ?
     - Quel est ton nom ?
-
 - intent: recherche_offres_emploi
   examples: |
     - Je recherche des offres d'emploi
@@ -35,9 +33,11 @@ nlu:
     - Est-ce que vous pouvez m'aider à trouver un travail ?
     - Est-ce que vous pouvez m'aider à trouver un job ?
     - Je suis à la recherche d'une offre d'emploi tu peux m'aider
+    - Je veux savoir s'il y a des offres d'emploi
+    - Salut je cherche des opportunités de travail
 - intent: precisier_localisation
   examples: |
-    - [Bizer](location)
+    - [Bizert](location)
     - Je recherche des offres d'emploi à [Tunis](location)
     - Je veux trouver un emploi à [Sfax](location)
     - Des emplois dans la région de [Sousse](location)
@@ -45,6 +45,8 @@ nlu:
     - Chercher des emplois à [Ariana](location)
     - Je cherche un emploi à [Ben Arous](location)
     - Je suis à la recherche d'un emploi à [Nabeul](location)
+    - Je préfère s'il y a des offres en [Tunis](location)
+    - à [Gabes](location)
 - intent: fournir_type_contrat
   examples: |
     - [CDI](type_contrat)
@@ -56,6 +58,8 @@ nlu:
     - Je suis à la recherche d'un [CDD](type_contrat)
     - Je suis intéressé par un [Stage](type_contrat) de 6 mois pendant l'été
     - Je souhaite travailler en [CDD](type_contrat) pour une durée indéterminée
+    - Je cherche un contrat [CDD](type_contrat)
+    - Je veux un contrat [CDI](type_contrat)
 - intent: fournir_domaine_emploi
   examples: |
     - [business](domaine_emploi)
@@ -70,6 +74,8 @@ nlu:
     - Les offres d'emploi dans [le domaine de la logistique](domaine_emploi) m'intéressent
     - Je suis passionné par [le design graphique](domaine_emploi), je cherche donc des opportunités dans ce domaine
     - Dans le domaine de [big data](domaine_emploi)
+    - Je suis intéressé par le secteur de [Management](domaine_emploi)
+    - Dans le secteur de [Data Science](domaine_emploi)
 - intent: fournir_fourchette_salaire
   examples: |
     - Entre [1000](salaire_minimum) et [4000](salaire_maximum) dinars
@@ -78,14 +84,17 @@ nlu:
     - Entre [40 000](salaire_minimum) DT et [50 000](salaire_maximum) DT
     - Environs [2000](salaire_minimum) dinars
     - [1000](salaire_minimum) dinars
-    - Je recherche un emploi avec un salaire compris entre [2000](salaire_minimum) et [3000] euros
-    - Ma fourchette de salaire souhaitée est de [40000](salaire_minimum) à [50000] DT par an
+    - Je recherche un emploi avec un salaire compris entre [2000](salaire_minimum) et [3000](salaire_maximum) euros
+    - Ma fourchette de salaire souhaitée est de [40000](salaire_minimum) à [50000](salaire_maximum) DT par an
     - Entre [3000](salaire_minimum) et [4000](salaire_maximum) dinars serait mon salaire idéal
     - Mon salaire minimum souhaité est de [50000](salaire_minimum) dt
     - Je vise une fourchette de salaire entre [4000](salaire_minimum) et [5000](salaire_maximum) dinars tunisien
     - J'accepterais un salaire d'environ [2000](salaire_minimum) Dinar tunisien par mois
     - Moins de [1000](salaire_minimum) dt ne serait pas acceptable pour moi
     - Je cherche un emploi avec un salaire d'au moins [50000](salaire_minimum) Dinars par mois
+    - Entre [1700](salaire_minimum) et [3000](salaire_maximum)
+    - Le minimum c'est [2300](salaire_minimum)
+    - Au maximum [5000](salaire_maximum)
 - intent: ressaisir_informations
   examples: |
     - Je veux changer ma localisation
@@ -123,3 +132,11 @@ nlu:
     - Je n'ai plus besoin de chercher
     - Bye
     - Merci c'est tout
+- synonym: CDD
+  examples: |
+    - cdd
+    - contrat à durée déterminée
+- synonym: CDI
+  examples: |
+    - cdi
+    - contrat à durée indéterminée
