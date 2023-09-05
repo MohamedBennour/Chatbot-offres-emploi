@@ -8,12 +8,10 @@ assistant_id: 20230711-145020-achromatic-margarine
 
 # Configuration for Rasa NLU.
 # https://rasa.com/docs/rasa/nlu/components/
+
 language: fr
 
 pipeline:
-# # No configuration for the NLU pipeline was provided. The following default pipeline was used to train your model.
-# # If you'd like to customize it, uncomment and adjust the pipeline.
-# # See https://rasa.com/docs/rasa/tuning-your-model for more information.
 - name: WhitespaceTokenizer
 - name: RegexFeaturizer
 - name: LexicalSyntacticFeaturizer

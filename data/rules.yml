@@ -1,56 +1,49 @@
 version: "3.1"
-  
-- rule: Salutation
+
+rules:
+- rule: User say hello
   steps:
   - intent: salutation
-  - action: utter_salutation
+  - action: action_session_start
 
-- rule: Recherche offres d'emploi
+- rule: Chitchat
+  steps:
+  - intent: chitchat
+  - action: utter_chitchat
+
+- rule: Activate the jobs form
   steps:
   - intent: recherche_offres_emploi
-  - action: utter_demande_localisation
+  - action: jobs_form
+  - active_loop: jobs_form
 
-- rule: Préciser localisation
+- rule: Submit jobs form
+  condition:
+  - active_loop: jobs_form
   steps:
-  - intent: precisier_localisation
-  - action: utter_demande_type_contrat
-  - slot_was_set:
-    - requested_slot: location
+  - action: jobs_form
+  - active_loop: null
+  - action: utter_confirmer_informations
 
-- rule: Fournir type contrat
+- rule: Display jobs form
   steps:
-  - intent: fournir_type_contrat
-  - action: utter_demande_domaine_emploi
-  - slot_was_set:
-    - requested_slot: type_contrat
+  - intent: confirmer_informations
+  - action: action_get_job_offers
 
-- rule: Fournir domaine emploi
+- rule: User wants to restart the form
   steps:
-  - intent: fournir_domaine_emploi
-  - action: utter_demande_fourchette_salaire
-  - slot_was_set:
-    - requested_slot: domaine_emploi
+  - intent: resaisir_informations
+  - action: action_restart
+  - action: jobs_form
+  - active_loop: jobs_form
 
-- rule: Fournir fourchette salaire
+- rule: Interruption in jobs Form
+  condition:
+  - active_loop: jobs_form
   steps:
-  - intent: fournir_fourchette_salaire
-  - action: action_listen
-  - slot_was_set:
-    - requested_slot: salaire_minimum
-    - requested_slot: salaire_maximum
-
-- rule: Continuer recherche
-  steps:
-  - intent: continuer_recherche
-  - action: utter_afficher_offres
-
-- rule: Changer critères recherche
-  steps:
-  - intent: ressaisir_informations
-  - action: utter_informations_incorrectes
-  - action: utter_demande_localisation
-
-- rule: Terminer recherche
-  steps:
-  - intent: terminer_recherche
-  - action: utter_au_revoir
+  # This unhappy path handles the case of an intent `chitchat` being detected
+  - intent: chitchat
+  - action: utter_chitchat
+  # Return to form after handling the `chitchat` intent
+  - action: jobs_form
+  - active_loop: jobs_form

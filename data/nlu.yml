@@ -1,16 +1,17 @@
 version: "3.1"
+
 nlu:
 - intent: salutation
   examples: |
     - Bonjour
-    - Salut
     - Bonsoir
+    - Salut
     - Bonjour, comment ça va ?
     - Salut, comment ça va ?
     - Coucou
     - Hi
     - Hey
-    - salut
+
 - intent: chitchat
   examples: |
     - Comment ça va ?
@@ -18,6 +19,7 @@ nlu:
     - As-tu des hobbies ?
     - Est-ce que vous êtes un bot ?
     - Quel est ton nom ?
+    - Raconte-moi une blague
 
 - intent: recherche_offres_emploi
   examples: |
@@ -35,72 +37,218 @@ nlu:
     - Est-ce que vous pouvez m'aider à trouver un travail ?
     - Est-ce que vous pouvez m'aider à trouver un job ?
     - Je suis à la recherche d'une offre d'emploi tu peux m'aider
-- intent: precisier_localisation
+    - Je veux savoir s'il y a des offres d'emploi
+    - Salut je cherche des opportunités de travail
+
+- intent: inform
   examples: |
-    - [Bizer](location)
-    - Je recherche des offres d'emploi à [Tunis](location)
-    - Je veux trouver un emploi à [Sfax](location)
-    - Des emplois dans la région de [Sousse](location)
-    - Je suis intéressé par des offres d'emploi à [Bizerte](location)
-    - Chercher des emplois à [Ariana](location)
-    - Je cherche un emploi à [Ben Arous](location)
-    - Je suis à la recherche d'un emploi à [Nabeul](location)
-- intent: fournir_type_contrat
-  examples: |
+    - Je recherche des offres d'emploi en [informatique](metier)
+    - Je cherche un travail à [Tunis](ville)
+    - Des emplois dans le domaine de [la vente](metier) m'intéressent
+    - Je suis à la recherche d'un [CDI](type_contrat) avec un salaire entre [2000](salaire_minimum) et 3000 dinars
+    - Chercher des emplois à [Ariana](ville) dans le secteur [Développeur Web](metier)
+    - Je cherche un emploi à [Ben Arous](ville) avec un [CDI](type_contrat) à temps plein
+    - Je suis à la recherche d'un [CDD](type_contrat) dans le domaine de [la finance](metier) avec un salaire supérieur à [4000](salaire_minimum) dinars
+    - Je veux travailler dans le domaine de [l'ingénierie logicielle](metier) avec un salaire d'au moins [50000](salaire_minimum) dinars par mois
+    - Trouver des emplois à [Le Kef](ville) serait idéal avec un [CDD](type_contrat) rémunéré entre [3000](salaire_minimum) et 4000 dinars
+    - Je suis intéressé par des emplois à [Gafsa](ville) ou [Tozeur](ville) dans le secteur [business](metier) avec un salaire entre [1000](salaire_minimum) et 5100 dinars
+    - Chercher un emploi à [Zaghouan](ville) serait une excellente opportunité dans le secteur de [la santé](metier) avec un [CDI](type_contrat) rémunéré entre [2000](salaire_minimum) et 3000 dinars
+    - [Bizerte](ville)
+    - a [Sid Bouzid](ville)
+    - Dans la région de [Tozeur](ville)
+    - Je recherche des offres d'emploi à [Nabeul](ville)
+    - Je veux trouver un emploi à [Sfax](ville)
+    - Des emplois dans la région de [Sousse](ville)
+    - Je suis intéressé par des offres d'emploi à [Bizerte](ville)
+    - Chercher des emplois à [Zaghouan](ville)
+    - Je cherche un emploi à [Béja](ville)
+    - Je suis à la recherche d'un emploi à [Nabeul](ville)
+    - Je préfère s'il y a des offres en [Tunis](ville)
+    - à [Gabes](ville)
+    - Trouver des offres d'emploi autour de [Jendouba](ville)
+    - Je cherche un emploi dans la ville de [Mahdia](ville)
+    - Des emplois dans le gouvernorat de [Médenine](ville)
+    - Des offres d'emploi à [Jendouba](ville) m'intéressent également
+    - Je recherche des opportunités de travail à [Kairouan](ville)
+    - Les offres d'emploi dans [la région de Sidi Bouzid](ville) m'intéressent
+    - Je veux trouver un emploi à [Kasserine](ville)
+    - Trouver des emplois à [Le Kef](ville) serait idéal
+    - Je suis à la recherche d'un emploi à [Monastir](ville)
+    - Je recherche des offres d'emploi à [Gabès](ville) et dans les environs
+    - Je suis intéressé par des emplois à [Gafsa](ville) ou [Tozeur](ville)
+    - Chercher un emploi à [Zaghouan](ville) serait une excellente opportunité
     - [CDI](type_contrat)
     - [CDD](type_contrat)
     - [Stage](type_contrat)
-    - [Plein temps](type_contrat)
-    - [Freelance](type_contrat) à temps plein ou à temps partiel
+    - [Contrat à durée indéterminée](type_contrat)
+    - [Contrat à durée déterminée](type_contrat)
+    - Un [Contrat a duree indeterminee](type_contrat) avec possibilité de télétravail
+    - Un [Contrat à duree determinee](type_contrat) à temps plein ou à temps partiel
+    - [Contrat a duree determinee](type_contrat)
+    - Je veux un [Contrat à durée indéterminée](type_contrat) avec possibilité de télétravail
+    - [Contrat à durée indéterminée](type_contrat) à temps plein ou à temps partiel
+    - Je suis à la recherche d'un [Contrat à durée déterminée](type_contrat) à temps plein
     - Je cherche un [CDI](type_contrat)
     - Je suis à la recherche d'un [CDD](type_contrat)
     - Je suis intéressé par un [Stage](type_contrat) de 6 mois pendant l'été
     - Je souhaite travailler en [CDD](type_contrat) pour une durée indéterminée
-- intent: fournir_domaine_emploi
+    - Je cherche un contrat [CDD](type_contrat)
+    - Je veux un contrat [CDI](type_contrat)
+    - Je recherche un [CDD](type_contrat) à temps partiel
+    - Est-ce que vous proposez des [CDI](type_contrat) avec flexibilité d'horaires ?
+    - Chercher un [Stage](type_contrat) rémunéré en [CDD](type_contrat) serait idéal
+    - Je recherche un [CDI](type_contrat) dans le domaine de [l'informatique](metier)
+    - [business](metier)
+    - Je suis intéressé par des offres d'emploi dans le domaine de [l'informatique](metier)
+    - Je recherche des opportunités de carrière dans le domaine du [marketing](metier)
+    - Je souhaite trouver un emploi dans le secteur de [la vente](metier)
+    - Les emplois liés à [Développeur Logiciel](metier) m'intéressent
+    - Je suis spécialisé dans les [ressources humaines](metier), donc je cherche des offres dans ce domaine
+    - J'aimerais travailler dans [l'industrie du numérique](metier)
+    - Je souhaite trouver un poste dans [le secteur de la santé](metier)
+    - Mon expertise est dans le domaine de [l'éducation](metier), je cherche donc des offres correspondantes
+    - Les offres d'emploi dans le domaine de [la logistique](metier) m'intéressent
+    - Je suis passionné par [le design graphique](metier), je cherche donc des opportunités dans ce domaine
+    - Dans le domaine d'[Administrateur Système](metier)
+    - Je suis intéressé par le secteur de [Management](metier)
+    - Dans le secteur de [Data Science](metier)
+    - Je souhaite travailler dans le domaine de [la communication](metier)
+    - Je recherche des opportunités dans le secteur de [l'environnement](metier)
+    - Des emplois dans le domaine du [Ingénieur Réseau](metier) m'intéressent également
+    - Chercher des offres d'emploi dans le domaine de [l'ingénierie](metier) serait mon objectif
+    - Je suis intéressé par des postes de [développeur web](metier)
+    - Je veux travailler dans le domaine de [l'ingénierie logicielle](metier)
+    - Trouver des emplois dans le secteur des [ressources naturelles](metier) serait mon rêve
+    - [3000](salaire_minimum)
+    - [1750]DT(salaire_minimum)
+    - [2050](salaire_minimum) dinars tunisien
+    - Salaire de [4000](salaire_minimum) dinars tunisien
+    - Au moins [5000](salaire_minimum) dinars 
+    - Mon salaire minimum souhaité est de [1000](salaire_minimum) dinars
+    - Je recherche un emploi avec un salaire minimum de [2000](salaire_minimum) DT
+    - Mon salaire minimum idéal serait [3000](salaire_minimum) dinars tunisien
+    - Un salaire minimum d'au moins [4000](salaire_minimum) DT serait acceptable pour moi
+    - [5000](salaire_minimum) DT par mois serait mon salaire minimum cible
+    - J'accepterais un salaire minimum d'environ [6000](salaire_minimum) DT
+    - Le minimum que je recherche est [7000](salaire_minimum) dinars tunisien
+    - Mon salaire minimum souhaité est de [8000](salaire_minimum) DT par mois
+    - Un salaire minimum entre [9000](salaire_minimum) et [10000](salaire_minimum) dinars serait satisfaisant
+    - Je cherche des offres avec des salaires minimum supérieurs à [11000](salaire_minimum) DT
+    - Mon salaire idéal est [1200](salaire_minimum) DT
+    - Je voudrais un emploi offrant un salaire  d'au moins [1300](salaire_minimum) DT
+    - Le minimum que j'accepterais est [1400](salaire_minimum) dinars tunisien
+    - Pour un salaire minimum de [1500](salaire_minimum) DT, je suis prêt à postuler
+    - J'aimerais trouver un emploi avec [1600](salaire_minimum) DT brut par mois
+    - Je vise [1700](salaire_minimum)
+    - Mon salaire minimum souhaité est [1800](salaire_minimum) DT
+    - Un salaire minimum entre [1900](salaire_minimum) et 2000 dinars serait satisfaisant
+    - Environ [2100](salaire_minimum) DT par mois serait parfait
+    - Entre [2300](salaire_minimum) et 2300 DT par mois serait mon salaire minimum idéal
+    - Je cherche des offres avec des salaires minimum supérieurs à [2100](salaire_minimum) DT
+    - Je suis compétent en [Python](skills) et [machine learning](skills)
+    - J'ai de l'expérience en [5](experience) ans dans [l'analyse de données](metier)
+    - Je cherche un emploi dans [le développement web](metier) avec des compétences en [HTML](skills) et [CSS](skills)
+    - J'ai travaillé pendant [3](experience) ans  en [marketing digital](metier)
+    - Je suis spécialisé en [comptabilité](metier) et j'ai [10](experience) ans d'expérience
+    - J'ai [11](experience) ans d'expérience en [design graphique](metier) avec des compétences en [Adobe Illustrator](skills) et [Photoshop](skills)
+    - Mes compétences comprennent [Java](skills), [Spring Boot](skills) et [MySQL](skills)
+    - J'ai travaillé sur des projets de [développement mobile](metier) avec [React Native](skills) et [Flutter](skills)
+    - Mon expérience en [vente](metier) comprend [prospection](skills), [négociation](skills) et [fidélisation client](skills)
+    - J'ai une solide expertise en [analyse financière](metier) avec [Excel](skills) et [Power BI](skills)
+    - J'ai [1](experience) ans d'expérience en [développement back-end](metier) avec [Node.js](skills) et [Express.js](skills)
+    - En tant que [professeur](metier), j'ai enseigné [mathématiques](skills) et [physique](skills) aux niveaux lycée et collège
+    - Mon expertise en [médecine](metier) inclut [chirurgie orthopédique](skills) et [médecine interne](skills)
+    - J'ai travaillé sur des projets de [gestion de projet](metier) avec [Agile](skills) et [Scrum](skills)
+    - En tant que [développeur full-stack](metier), j'ai des compétences en [React](skills), [Node.js](skills) et [MongoDB](skills)
+    - J'ai [3](experience) ans d'expérience en [design UX/UI](metier) avec des outils comme [Figma](skills) et [Sketch](skills)
+    - Mon expertise en [intelligence artificielle](metier) comprend [traitement du langage naturel](skills) et [apprentissage automatique](skills)
+    - J'ai travaillé sur des projets de [robotique](metier) avec [ROS](skills) et [Python](skills) pour la programmation des robots
+    - Je suis un [développeur web](metier) avec des compétences en [HTML](skills), [CSS](skills) et [JavaScript](skills)
+    - En tant que [développeur logiciel](metier), je Master [C++](skills), [Java](skills) et [Python](skills)
+    - Mon expertise en [administration système](metier) comprend la [gestion de serveurs](skills) et la [sécurité informatique](skills)
+    - J'ai de l'expérience en [analyste en cybersécurité](metier) avec des compétences en [sécurité des systèmes](skills) et [gestion des vulnérabilités](skills)
+    - En tant que [data scientist](metier), je suis compétent en [analyse de données](skills) et [machine learning](skills) avec [Python](skills) et [R](skills)
+    - Je suis un [ingénieur](diplome) [réseau](metier) avec des compétences en [conception de réseaux](skills) et [sécurité réseau](skills)
+    - En tant qu'[architecte Cloud](metier), j'ai travaillé avec [AWS](skills), [Azure](skills) et [GCP](skills) pour concevoir des architectures distribuées
+    - J'ai de l'expérience en [UX/UI designer](metier) avec des compétences en [conception d'interfaces utilisateur](skills) et [prototypage](skills)
+    - Mon expertise en [analyste de données](metier) inclut [ETL](skills) et [SQL](skills) pour la visualisation de données
+    - Je recherche des offres d'emploi en [informatique](metier) avec un [CDI](type_contrat) à [Tunis](ville) et un salaire minimum de [3000](salaire_minimum) DT.
+    - Chercher des emplois à [Kef](ville) dans le secteur [business](metier) en [CDD](type_contrat) serait idéal.
+    - J'ai [8](experience) années d'expérience en [développement web](metier) avec des compétences en [HTML](skills), [CSS](skills) et [JavaScript](skills).
+    - Je suis à la recherche d'un [Contrat à durée indéterminée](type_contrat) en [marketing digital](metier) à [Sfax](ville) avec un salaire minimum de [2500](salaire_minimum) DT.
+    - J'ai travaillé sur des projets de [développement mobile](metier) avec [React Native](skills) et [Flutter](skills) pendant [2](experience) ans.
+    - En tant qu'[architecte Cloud](metier), j'ai conçu des architectures distribuées sur [AWS](skills) et [Azure](skills) avec une expérience de [4](experience) ans.
+    - Mon expertise en [UX/UI designer](metier) comprend la [conception d'interfaces utilisateur](skills) et [prototypage](skills) avec [Figma](skills) et [Sketch](skills).
+    - Je suis un [ingénieur](diplome) [DevOps](metier) spécialisé en [automatisation](skills) et [gestion de systèmes](skills) avec [9](experience) ans d'expérience.
+    - Chercher un emploi en [ingénierie logicielle](metier) avec un [CDD](type_contrat) rémunéré entre [4000](salaire_minimum) et 4500 DT serait une excellente opportunité.
+    - Je recherche des offres d'emploi en [informatique](metier) avec un [CDI](type_contrat) à [Tunis](ville) et un salaire minimum de [3000](salaire_minimum) DT.
+    - Chercher des emplois à [Kairouan](ville) dans le secteur [business](metier) en [CDD](type_contrat) serait idéal.
+    - J'ai [5](experience) ans d'expérience en [développement web](metier) avec des compétences en [HTML](skills), [CSS](skills) et [JavaScript](skills).
+    - Je suis à la recherche d'un [Contrat à durée indéterminée](type_contrat) en [marketing digital](metier) à [Sfax](ville) avec un salaire de [2500](salaire_minimum) DT.
+    - Je recherche des offres d'emploi en [informatique](metier) avec un [Master](diplome)
+    - Je cherche un travail à [Sidi Bouzid](ville) avec un diplôme de [Licence](diplome)
+    - Des emplois dans le domaine de [Analyste en Cybersécurité](metier) m'intéressent, j'ai un [Baccalauréat](diplome)
+    - Je suis à la recherche d'un [CDI](type_contrat) avec un salaire entre [2000](salaire_minimum) et 3000 dinars et un diplôme d'[Ingénieurie](diplome)
+    - Chercher des emplois à [Monastir](ville) dans le secteur [informatique](metier) pour les titulaires d'un [Master](diplome)
+    - Je cherche un emploi à [Tataouine](ville) avec un [CDI](type_contrat) à temps plein et un diplôme de [Licence](diplome)
+    - Je suis à la recherche d'un [CDD](type_contrat) dans le domaine de [la finance](metier) avec un salaire supérieur à [4000](salaire_minimum) dinars et un diplôme de [Mastère](diplome)
+    - Je veux travailler dans le domaine de [l'ingénierie logicielle](metier) avec un salaire d'au moins [50000](salaire_minimum) dinars par mois et un diplôme d'[Ingénieurie](diplome)
+    - J'ai un [baccalauréat](diplome) en [sciences](metier)
+    - J'ai un diplome de [Doctorat](diplome) en [biologie](metier)
+    - J'ai obtenu une [Licence](diplome) en [économie](metier)
+    - Mon diplome est un [Master](diplome) en [gestion des affaires](metier)
+    - J'ai un [baccalauréat](diplome) en [sciences sociales](metier)
+    - J'ai un [Mastère](diplome) en [mécanique](metier)
+    - Mon éducation comprend un [BTS](diplome) en [informatique](metier)
+    - J'ai suivi une formation en [arts plastiques](metier) et obtenu un [BTS](diplome)
+    - J'ai une [Doctorat](diplome) en [biologie](metier)
+    - Mon parcours comprend une [Master](diplome) en [linguistique](metier)
+    - Mon diplôme est en [psychologie](metier) et j'ai obtenu une [Licence](diplome)
+    - J'ai un [Doctorat](diplome) en [physique nucléaire](metier)
+    - Mon éducation inclut un [CAP](diplome) en [pâtisserie](metier)
+    - Mon diplôme est en [musique](metier) et j'ai une [Licence](diplome) 
+    - J'ai une [Master](diplome) en [droit international](metier)
+    - J'ai obtenu un [CAP](diplome) en [langues étrangères appliquées](metier)
+    - Mon diplôme est un [ingénieur](diplome) en [électronique](metier)
+    - J'ai un [Mastère](diplome) en [administration des affaires](metier)
+    - Mon éducation comprend un [BTS](diplome) en [mécatronique](metier)
+    - J'ai suivi une formation en [théâtre](metier) et obtenu un [BTS](diplome)
+    - J'ai un [Doctorat](diplome) en [chimie](metier)
+    - Mon parcours comprend une [Master](diplome) en [architecture](metier)
+    - Mon diplôme est en [éducation physique](metier) et j'ai obtenu un [Bachelor](diplome) en [kinésiologie](metier)
+    - J'ai un [Doctorat](diplome) en [astrophysique](metier)
+    - Mon éducation inclut un [CAP](diplome) en [menuiserie](metier)
+    - Mon diplôme est en [journalisme](metier) et j'ai une [Licence](diplome)
+    - Je suis à la recherche d'un [Contrat à durée indéterminée](type_contrat) en [marketing digital](metier) à [Ariana](ville) avec un salaire de [1750](salaire_minimum) DT.
+    - Je suis à la recherche d'un [CDI](type_contrat) avec un salaire entre [2000](salaire_minimum) et 3000 dinars et un diplôme d'[Ingénieur](diplome)
+    - Chercher des emplois à [Ariana](ville) dans le secteur [informatique](metier) pour les titulaires d'un [Master](diplome)
+    - Je cherche un emploi à [Ben Arous](ville) avec un [Contrat a duree determinee](type_contrat) à temps plein et un diplôme de [Licence](diplome)
+    - Je suis à la recherche d'un [CDD](type_contrat) dans le domaine de [la finance](metier) avec un salaire supérieur à [4000](salaire_minimum) dinars et un diplôme de [Mastère](diplome)
+    - Je veux travailler dans le domaine de [l'ingénierie logicielle](metier) avec un salaire d'au moins [50000](salaire_minimum) dinars par mois et un diplôme d'[Ingénieur](diplome)
+    - Je recherche des offres d'emploi en [informatique](metier) en [France](pays)
+    - Je cherche un travail à [Tunis](ville) avec des opportunités en [Canada](pays)
+    - Des emplois dans le domaine de [la vente](metier) m'intéressent en [Belgique](pays)
+    - Je suis à la recherche d'un [CDI](type_contrat) avec un salaire entre [2000](salaire_minimum) et 3000 dinars en [Suisse](pays)
+    - Chercher des emplois à [Ariana](ville) dans le secteur [Développeur Web](metier) en [Allemagne](pays)
+    - à [Tunisie](pays)
+    - [HTML](skills) et (css)[skills] et [javascript](skills)
+
+- intent: resaisir_informations
   examples: |
-    - [business](domaine_emploi)
-    - Je suis intéressé par des offres d'emploi dans le domaine de [l'informatique](domaine_emploi)
-    - Je recherche des opportunités de carrière dans le domaine du [marketing](domaine_emploi)
-    - Je souhaite trouver un emploi dans le secteur de [la vente](domaine_emploi)
-    - Les emplois liés à [la finance](domaine_emploi) m'intéressent
-    - Je suis spécialisé dans les ressources humaines, donc je cherche des offres dans [ce domaine](domaine_emploi)
-    - J'aimerais travailler dans [l'industrie du numérique](domaine_emploi)
-    - Je souhaite trouver un poste dans [le secteur de la santé](domaine_emploi)
-    - Mon expertise est dans [le domaine de l'éducation](domaine_emploi), je cherche donc des offres correspondantes
-    - Les offres d'emploi dans [le domaine de la logistique](domaine_emploi) m'intéressent
-    - Je suis passionné par [le design graphique](domaine_emploi), je cherche donc des opportunités dans ce domaine
-    - Dans le domaine de [big data](domaine_emploi)
-- intent: fournir_fourchette_salaire
-  examples: |
-    - Entre [1000](salaire_minimum) et [4000](salaire_maximum) dinars
-    - Plus de [2000](salaire_minimum) dinars
-    - Moins de [10000](salaire_maximum) dinars
-    - Entre [40 000](salaire_minimum) DT et [50 000](salaire_maximum) DT
-    - Environs [2000](salaire_minimum) dinars
-    - [1000](salaire_minimum) dinars
-    - Je recherche un emploi avec un salaire compris entre [2000](salaire_minimum) et [3000] euros
-    - Ma fourchette de salaire souhaitée est de [40000](salaire_minimum) à [50000] DT par an
-    - Entre [3000](salaire_minimum) et [4000](salaire_maximum) dinars serait mon salaire idéal
-    - Mon salaire minimum souhaité est de [50000](salaire_minimum) dt
-    - Je vise une fourchette de salaire entre [4000](salaire_minimum) et [5000](salaire_maximum) dinars tunisien
-    - J'accepterais un salaire d'environ [2000](salaire_minimum) Dinar tunisien par mois
-    - Moins de [1000](salaire_minimum) dt ne serait pas acceptable pour moi
-    - Je cherche un emploi avec un salaire d'au moins [50000](salaire_minimum) Dinars par mois
-- intent: ressaisir_informations
-  examples: |
+    - Non
+    - Non, ce n'est pas correct
     - Je veux changer ma localisation
     - J'ai modifié mes critères de recherche
     - Réinitialiser les informations
     - Je veux recommencer
-    - Je veux modifier mes critères de recherche
-    - Je veux changer mes critères de recherche
-    - Je veux changer ma fourchette salariale
     - Réinitialiser ma recherche
     - Recommencer ma recherche
     - Oops, j'ai donné de mauvaises informations
     - Je me suis trompé dans mes réponses
     - Les informations que j'ai fournies sont incorrectes
     - J'ai fait une erreur dans mes choix
+    - Je veux modifier mes critères de recherche
+
 - intent: continuer_recherche
   examples: |
     - Continuer la recherche
@@ -112,7 +260,27 @@ nlu:
     - Je veux continuer à chercher
     - Afficher plus d'offres
     - Autres offres
-    - Donnez-moi d'autres offres
+    - Continuer la recherche avec de nouveaux critères
+    - Je veux voir d'autres offres avec de nouveaux critères
+
+- intent : confirmer_informations
+  examples: |
+    - Oui
+    - Oui, c'est correct
+    - Oui, c'est ça
+    - Oui, c'est bien ça
+    - Oui, c'est exact
+    - Oui, c'est bon 
+  
+- intent: demande_postuler_offre
+  examples: |
+    - Comment postuler à cette offre ?
+    - Comment postuler à cette offre d'emploi ?
+    - Comment postuler à cette offre de travail ?
+    - Comment postuler à cette offre de job ?
+    - je veux postuler à cette offre
+    
+
 - intent: terminer_recherche
   examples: |
     - J'ai terminé ma recherche
@@ -123,3 +291,45 @@ nlu:
     - Je n'ai plus besoin de chercher
     - Bye
     - Merci c'est tout
+    - Terminer la recherche d'emploi
+    - Arrêter la recherche
+    - Je suis satisfait des offres que j'ai vues
+    - Je n'ai pas besoin de voir plus d'offres
+    - Vous pouvez clôturer ma recherche
+
+synonyms:
+  - synonym: "CDI"
+    examples: |
+      - CDI
+      - Contrat à durée indéterminée
+  - synonym: "CDD"
+    examples: |
+      - CDD
+      - Contrat à durée déterminée
+
+lookup: ville
+examples: |
+    - Tunis
+    - Ariana
+    - Ben Arous
+    - Manouba
+    - Nabeul
+    - Zaghouan
+    - Bizerte
+    - Béja
+    - Jendouba
+    - Le Kef
+    - Siliana
+    - Kairouan
+    - Kasserine
+    - Sidi Bouzid
+    - Sousse
+    - Monastir
+    - Mahdia
+    - Sfax
+    - Gafsa
+    - Tozeur
+    - Kebili
+    - Gabès
+    - Medenine
+    - Tataouine

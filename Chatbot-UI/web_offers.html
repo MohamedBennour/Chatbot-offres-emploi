@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offres d'Emploi</title>
+    <link rel="stylesheet" href="offers_style.css">
+</head>
+<body>
+    <h1>Offres d'Emploi</h1>
+    <div id="jobOffers"></div>
+
+    <script>
+        // Mettez à jour le chemin d'accès au fichier JSON en utilisant l'URL du serveur local
+        fetch('http://localhost:8000/Chatbot-UI/job_offers.json')
+            .then(response => response.json())
+            .then(data => {
+                const jobOffersDiv = document.getElementById('jobOffers');
+                if (data.length > 0) {
+                    const table = document.createElement('table');
+                    table.innerHTML = `
+                        <thead>
+                            <tr>
+                                <th>Titre</th>
+                                <th>Métier</th>
+                                <th>Ville</th>
+                                <th>Entreprise</th>
+                                <th>Description</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    `;
+
+                    const tbody = table.querySelector('tbody');
+                    data.forEach(offer => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td><a href="${offer.url}" target="_blank">${offer.titre}</a></td>
+                            <td>${offer.metier}</td>
+                            <td>${offer.ville}</td>
+                            <td>${offer.nom_entreprise}</td>
+                            <td>${offer.description}</td>
+                            <td>${offer.date_offre}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+
+                    jobOffersDiv.appendChild(table);
+                } else {
+                    jobOffersDiv.innerHTML = '<p>Aucune offre d\'emploi ne correspond à vos critères.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Une erreur s\'est produite lors du chargement des offres d\'emploi :', error);
+            });
+    </script>
+</body>
+</html>
+

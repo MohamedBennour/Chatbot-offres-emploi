@@ -1,28 +1,45 @@
 version: '3.1'
+
 intents:
-- continuer_recherche
-- fournir_domaine_emploi
-- fournir_fourchette_salaire
-- fournir_type_contrat
-- nlu_fallback
-- precisier_localisation
-- recherche_offres_emploi
-- ressaisir_informations
 - salutation
 - chitchat
+- recherche_offres_emploi
+- inform
+- resaisir_informations
+- continuer_recherche
+- confirmer_informations
+- demande_postuler_offre
 - terminer_recherche
+
 entities:
-- domaine_emploi
-- location
-- salaire_maximum
-- salaire_minimum
+- metier
 - type_contrat
+- salaire_minimum
+- ville
+- pays
+- diplome  
+- skills
+- experience
+
 slots:
-  slot_location:
+  slot_diplome:
+    type: categorical
+    values:
+    - Bacadauréat
+    - Licence
+    - Master
+    - Ingénieur
+    - Doctorat
+    - BTS
+    - CAP
+    mappings:
+    - type: from_entity
+      entity: diplome
+  slot_metier:
     type: text
     mappings:
     - type: from_entity
-      entity: location
+      entity: metier
   slot_type_contrat:
     type: categorical
     values:
@@ -32,114 +49,221 @@ slots:
     mappings:
     - type: from_entity
       entity: type_contrat
-  slot_domaine_emploi:
+  slot_skills:
+    type: list
+    mappings:
+    - type: from_entity
+      entity: skills
+  slot_experience:
+    type: float
+    mappings:
+    - type: from_entity
+      entity: experience
+  slot_pays:
     type: text
     mappings:
     - type: from_entity
-      entity: domaine_emploi
+      entity: pays
+  slot_ville:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: ville
   slot_salaire_minimum:
     type: float
     mappings:
     - type: from_entity
       entity: salaire_minimum
-  slot_salaire_maximum:
-    type: float
-    mappings:
-    - type: from_entity
-      entity: salaire_maximum
+
 responses:
   utter_salutation:
-  - text: Bonjour, comment puis-je vous aider ?
+  - text: Salut, comment puis-je vous aider ?
+  - text: Bonjour ! Je suis votre assistant pour la recherche d'emploi. Comment puis-je vous aider aujourd'hui ?
+  
   utter_chitchat:
-  - text: "Je suis un chatbot spécialisé dans la recherche d'emploi. Mon objectif est de vous aider à trouver des offres d'emploi pertinentes. Comment puis-je vous aider dans votre recherche d'emploi ?"
-  utter_demande_localisation:
-  - text: Dans quelle localisation souhaitez-vous chercher des offres d'emploi ?
+  - text: Je suis un chatbot spécialisé dans la recherche d'emploi. Mon objectif est de vous aider à trouver des offres d'emploi pertinentes. Comment puis-je vous aider dans votre recherche d'emploi ?
+  - text: Je suis un chatbot spécialisé dans la recherche d'emploi. Si vous avez des questions sur les offres d'emploi ou besoin d'aide pour votre recherche, n'hésitez pas à me demander !
+  
+  utter_ask_slot_diplome:
+  - text: Quel est votre diplôme ?
     buttons:
-    - title: Ariana
-      payload: /precisier_localisation{{"location":"Ariana"}}
-    - title: Ben Arous
-      payload: /precisier_localisation{{"location":"Ben Arous"}}
-    - title: Bizerte
-      payload: /precisier_localisation{{"location":"Bizerte"}}
-    - title: Manouba
-      payload: /precisier_localisation{{"location":"Manouba"}}
-    - title: Monastir
-      payload: /precisier_localisation{{"location":"Monastir"}}
-    - title: Nabeul
-      payload: /precisier_localisation{{"location":"Nabeul"}}
-    - title: Sfax
-      payload: /precisier_localisation{{"location":"Sfax"}}
-    - title: Sousse
-      payload: /precisier_localisation{{"location":"Sousse"}}
+    - title: Bacalauréat
+      payload: '/inform{{"diplome": "Bacalauréat"}}'
+    - title: Licence
+      payload: '/inform{{"diplome": "Licence"}}'
+    - title: Master
+      payload: '/inform{{"diplome": "Master"}}'
+    - title: Ingénieur
+      payload: '/inform{{"diplome": "Ingénieur"}}'
+    - title: Doctorat
+      payload: '/inform{{"diplome": "Doctorat"}}'
+    - title: BTS
+      payload: '/inform{{"diplome": "BTS"}}'
+    - title: CAP
+      payload: '/inform{{"diplome": "CAP"}}'
+
+  utter_ask_slot_metier:
+  - text: Quel domaine d'emploi vous intéresse ?
+    buttons:
+    - title: Développeur Web
+      payload: '/inform{{"metier": "Développeur Web"}}'
+    - title: Développeur Logiciel
+      payload: '/inform{{"metier": "Développeur Logiciel"}}'
+    - title: Ingénieur DevOps
+      payload: '/inform{{"metier": "Ingénieur DevOps"}}'
+    - title: Administrateur Système
+      payload: '/inform{{"metier": "Administrateur Système"}}'
+    - title: Analyste en Cybersécurité
+      payload: '/inform{{"metier": "Analyste en Cybersécurité"}}'
+    - title: Data Scientist
+      payload: '/inform{{"metier": "Data Scientist"}}'
+    - title: Ingénieur Réseau
+      payload: '/inform{{"metier": "Ingénieur Réseau"}}' 
+
+  utter_ask_slot_skills:
+  - text: Qelles sont vos compétences dans le domaine {slot_skills} ?
+
+  utter_ask_slot_experience:
+  - text: Combien d'années d'expérience professionnelle avez-vous ?
+    buttons:
+    - title: Moins de 1 an
+      payload: '/inform{{"experience": "0"}}'
+    - title: 1 an
+      payload: '/inform{{"experience": "1"}}'
+    - title: 2 ans
+      payload: '/inform{{"experience": "2"}}'
+    - title: 3 ans
+      payload: '/inform{{"experience": "3"}}'
+    - title: 4 ans
+      payload: '/inform{{"experience": "4"}}'
+    - title: 5 ans
+      payload: '/inform{{"experience": "5"}}'
+    - title: Plus de 5 ans
+      payload: '/inform{{"experience": "6"}}'
+
+  utter_ask_slot_pays:
+  - text: Dans quel pays souhaitez-vous chercher des offres d'emploi ?
+    buttons:
+    - title: Tunisie
+      payload: /inform{{"pays":"Tunisie"}}
+    - title: France
+      payload: /inform{{"pays":"France"}}
+    - title: Allemagne
+      payload: /inform{{"pays":"Allemagne"}}
+    - title: Canada
+      payload: /inform{{"pays":"Canada"}}
+    - title: Etats-Unis
+      payload: /inform{{"pays":"Etats-Unis"}}
+    - title: Royaume-Uni
+      payload: /inform{{"pays":"Royaume-Uni"}}
+    - title: Suisse
+      payload: /inform{{"pays":"Suisse"}}
+
+  utter_ask_slot_ville:
+  - text: Dans quelle région souhaitez-vous chercher des offres d'emploi ?
+    buttons:
     - title: Tunis
-      payload: /precisier_localisation{{"location":"Tunis"}}
-  utter_demande_type_contrat:
-  - text: Quel type de contrat recherchez-vous ?
+      payload: /inform{{"ville":"Tunis"}}
+    - title: Ariana
+      payload: /inform{{"ville":"Ariana"}}
+    - title: Ben Arous
+      payload: /inform{{"ville":"Ben Arous"}}
+    - title: Manouba
+      payload: /inform{{"ville":"Manouba"}}
+    - title: Bizerte
+      payload: /inform{{"ville":"Bizerte"}}
+    - title: Monastir
+      payload: /inform{{"ville":"Monastir"}}
+    - title: Nabeul
+      payload: /inform{{"ville":"Nabeul"}}
+    - title: Sfax
+      payload: /inform{{"ville":"Sfax"}}
+    - title: Sousse
+      payload: /inform{{"ville":"Sousse"}}
+  
+  utter_ask_slot_type_contrat:
+  - text: Quel type de contrat recherchez vous ?
     buttons:
     - title: CDI
-      payload: /fournir_type_contrat{{"type_contrat":"CDI"}}
+      payload: /inform{{"type_contrat":"CDI"}}
     - title: CDD
-      payload: /fournir_type_contrat{{"type_contrat":"CDD"}}
+      payload: /inform{{"type_contrat":"CDD"}}
     - title: Stage
-      payload: /fournir_type_contrat{{"type_contrat":"Stage"}}
-  utter_demande_domaine_emploi:
-  - text: Dans quel domaine recherchez-vous un emploi ?
-    buttons:
-    - title: Informatique
-      payload: '/fournir_domaine_emploi{{"domaine_emploi": "Informatique"}}'
-    - title: Marketing
-      payload: '/fournir_domaine_emploi{{"domaine_emploi": "Marketing"}}'
-    - title: Vente
-      payload: '/fournir_domaine_emploi{{"domaine_emploi": "Vente"}}'
-    - title: Finance
-      payload: '/fournir_domaine_emploi{{"domaine_emploi": "Finance"}}'
-    - title: Ressources humaines
-      payload: '/fournir_domaine_emploi{{"domaine_emploi": "Ressources humaines"}}'
-    - title: Design graphique
-      payload: '/fournir_domaine_emploi{{"domaine_emploi": "Design graphique"}}'
-  utter_demande_fourchette_salaire:
-  - text: Quelle est la fourchette de salaire souhaitée ?
+      payload: /inform{{"type_contrat":"Stage"}}
+
+  utter_ask_slot_salaire_minimum:
+  - text: Quel est le salaire minimum souhaité ?
     buttons:
     - title: Moins de 1000 DT
-      payload: '/fournir_fourchette_salaire{{"salaire_minimum": "0", "salaire_maximum": "1000"}}'
-    - title: 1000 - 2000 DT
-      payload: '/fournir_fourchette_salaire{{"salaire_minimum": "1000", "salaire_maximum": "2000"}}'
-    - title: 2000 - 3000 DT
-      payload: '/fournir_fourchette_salaire{{"salaire_minimum": "2000", "salaire_maximum": "3000"}}'
-    - title: Plus de 3000 DT
-      payload: '/fournir_fourchette_salaire{{"salaire_minimum": "3000", "salaire_maximum": "999999999"}}'
+      payload: '/inform{{"salaire_minimum": "0"}}'
+    - title: 1000 DT
+      payload: '/inform{{"salaire_minimum": "1000"}}'
+    - title: 2000 DT
+      payload: '/inform{{"salaire_minimum": "2000"}}'
+    - title: 3000 DT
+      payload: '/inform{{"salaire_minimum": "3000"}}'
+    - title: 4000 DT
+      payload: '/inform{{"salaire_minimum": "4000"}}'
+    - title: Plus de 5000 DT
+      payload: '/inform{{"salaire_minimum": "5000"}}'
+
+  utter_confirmer_informations:
+  - text: Vous recherchez un emploi à {slot_ville}, {slot_pays}, en tant que {slot_metier}, 
+          avec un contrat {slot_type_contrat} et un niveau d'études {slot_diplome}. 
+          Vos compétences incluent {slot_skills} et vous avez {slot_experience} an(s) d'expérience. 
+          Est-ce correct ?
+    buttons:
+    - title: Oui
+      payload: "/confirmer_informations"
+    - title: Non
+      payload: "/resaisir_informations"
+
+  
   utter_informations_incorrectes:
   - text: Oops, les informations que vous avez fournies sont incorrectes. Veuillez ressaisir les informations nécessaires.
-  utter_afficher_offres:
-  - text: "Voici quelques offres d'emploi correspondant à vos critères : ..."
-  utter_details_offre:
-  - text: "Voici les détails de l'offre sélectionnée : ..."
+  - text: Désolé, les informations que vous avez fournies sont incorrectes. Veuillez vérifier et saisir les informations correctes.
+  
   utter_postuler_offre:
   - text: Pour postuler à cette offre, veuillez suivre les instructions de candidature spécifiées dans l'annonce.
+  
   utter_continuer_recherche:
   - text: Voulez-vous continuer à chercher d'autres offres ou souhaitez-vous terminer votre recherche d'emploi ?
+    buttons:
+    - title: Continuer la recherche
+      payload: "/continuer_recherche"
+    - title: Terminer la recherche
+      payload: "/terminer_recherche"
+  
   utter_au_revoir:
-  - text: Merci d'avoir utilisé notre chatbot de recherche d'emploi. N'hésitez pas à revenir si vous avez d'autres besoins. Au revoir !
+  - text: Merci d'utiliser notre service. Au revoir !
+  - text: Merci d'utiliser notre service. Si vous avez besoin d'aide ultérieurement, n'hésitez pas à revenir vers moi. Au revoir !
+ 
+  utter_submit:
+  - text: Merci ! Vos informations ont été enregistrées. Nous allons rechercher des offres d'emploi correspondant à vos critères.
+ 
+  utter_default:
+  - text: Désolé, je n'ai pas compris votre réponse. Veuillez réessayer.
+  - text: Désolé, je n'ai pas compris votre demande. Pouvez-vous reformuler ou poser une autre question ?
+  - text: Désolé, je n'ai pas compris votre réponse. Pourriez-vous reformuler ou poser une question différente ?
+
+forms:
+  jobs_form:
+    required_slots:
+    - slot_diplome
+    - slot_metier
+    - slot_skills
+    - slot_experience
+    - slot_type_contrat
+    - slot_pays
+    - slot_ville
+
+actions:
+- validate_jobs_form
+- action_restart
+- action_session_start
+- action_continuer_recherche
+- action_get_job_offers
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
-actions:
-- utter_au_revoir
-- utter_salutation
-- utter_demande_type_contrat
-- utter_demande_localisation
-- utter_demande_domaine_emploi
-- utter_afficher_offres
-- utter_demande_fourchette_salaire
-forms:
-  emploi_form:
-    ignored_intents:
-      - salutation
-      - terminer_recherche
-    required_slots:
-      - slot_location
-      - slot_type_contrat
-      - slot_domaine_emploi
-      - slot_salaire_minimum
-      - slot_salaire_maximum
-

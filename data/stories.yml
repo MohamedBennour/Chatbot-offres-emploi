@@ -1,56 +1,27 @@
 version: "3.1"
 
 stories:
-  - story: User starts the conversation
-    steps:
-      - intent: salutation
-      - action: utter_salutation
-      - intent: recherche_offres_emploi
-      - action: utter_demande_localisation
 
-  - story: User specifies the location
-    steps:
-      - intent: precisier_localisation
-        entities:
-          - location: "Tunis"
-      - action: utter_demande_type_contrat
+- story: User interrupts the job form the beginning
+  steps:
+  - intent: recherche_offres_emploi
+  - action: jobs_form
+  - active_loop: jobs_form
+  - intent: terminer_recherche
+  - action: utter_continuer_recherche
+  - intent: terminer_recherche
+  - action: utter_au_revoir
+  - action: action_deactivate_loop
+  - active_loop: null
 
-  - story: User specifies the contract type
-    steps:
-      - intent: fournir_type_contrat
-        entities:
-          - type_contrat: "CDI"
-      - action: utter_demande_domaine_emploi
-
-  - story: User specifies the job domain
-    steps:
-      - intent: fournir_domaine_emploi
-        entities:
-          - domaine_emploi: "informatique"
-      - action: utter_demande_fourchette_salaire
-
-  - story: User specifies the salary range
-    steps:
-      - intent: fournir_fourchette_salaire
-        entities:
-          - salaire_minimum: "1000"
-          - salaire_maximum: "4000"
-      - action: emploi_form
-      - action: utter_afficher_offres
-      - action: action_listen
-
-  - story: User wants to see more job offers
-    steps:
-      - intent: continuer_recherche
-      - action: utter_afficher_offres
-
-  - story: User wants to change search criteria
-    steps:
-      - intent: ressaisir_informations
-      - action: utter_informations_incorrectes
-      - action: utter_demande_localisation
-
-  - story: User ends the conversation
-    steps:
-      - intent: terminer_recherche
-      - action: utter_au_revoir
+- story: User interrupts the job form and doesn't want to continue
+  steps:
+  - intent: inform
+  - action: jobs_form
+  - active_loop: jobs_form
+  - intent: terminer_recherche
+  - action: utter_continuer_recherche
+  - intent: terminer_recherche
+  - action: utter_au_revoir
+  - action: action_deactivate_loop
+  - active_loop: null
